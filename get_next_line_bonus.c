@@ -1,20 +1,29 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: eamghar <eamghar@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/17 13:18:31 by eamghar           #+#    #+#             */
+/*   Updated: 2023/03/17 15:42:26 by eamghar          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-
-
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 char	*get_next_line(int fd)
 {
-	static char	*static_var;
+	static char	*static_var[OPEN_MAX];
 	char		*return_line;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	static_var = ft_read_until_new_line(fd, static_var);
-	if (!static_var)
+	static_var[fd] = ft_read_until_new_line(fd, static_var[fd]);
+	if (!static_var[fd])
 		return (NULL);
-	return_line = ft_seperate_new_line(static_var);
-	static_var = ft_get_remainder(static_var);
+	return_line = ft_seperate_new_line(static_var[fd]);
+	static_var[fd] = ft_get_remainder(static_var[fd]);
 	return (return_line);
 }
 
@@ -30,7 +39,7 @@ char	*ft_read_until_new_line(int fd, char *static_var)
 	while (number_of_bytes_read > 0 && !ft_strchr(static_var, '\n'))
 	{
 		number_of_bytes_read = read(fd, buffer, BUFFER_SIZE);
-		if (number_of_bytes_read <= 0)
+		if (number_of_bytes_read == -1)
 			return (free(buffer), free(static_var), NULL);
 		buffer[number_of_bytes_read] = '\0';
 		static_var = ft_strjoin(static_var, buffer);
@@ -84,25 +93,4 @@ char	*ft_get_remainder(char *static_var)
 	free(static_var);
 	static_var = NULL;
 	return (str);
-}
-
-int main()
-{
-	int		fd;
-	char	*str;
-
-	fd = open("get_next_line.c", O_RDWR, 0777);
-	if(fd == -1)
-	{
-		printf("cant open\n");
-		return(0);
-	}
-	str = get_next_line(fd);
-	while(str)
-	{
-		printf("%s\n", str);
-		free(str);
-		str = get_next_line(fd);
-	}
-	return(0);
 }

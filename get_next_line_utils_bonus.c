@@ -1,7 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: eamghar <eamghar@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/17 13:19:50 by eamghar           #+#    #+#             */
+/*   Updated: 2023/03/17 13:22:32 by eamghar          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-
-
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 char	*ft_strdup(char *str)
 {
@@ -50,14 +59,14 @@ char	*ft_strjoin(char *static_var, char *buffer)
 	return (str);
 }
 
-int		ft_strlen(char *str)
+int	ft_strlen(char *str)
 {
 	int	j;
 
 	j = 0;
 	if (!str)
 	{
-		return (0);	
+		return (0);
 	}
 	while (str[j] != '\0')
 	{
@@ -66,7 +75,7 @@ int		ft_strlen(char *str)
 	return (j);
 }
 
-int		ft_strchr(char *str, char find)
+int	ft_strchr(char *str, char find)
 {
 	int	i;
 

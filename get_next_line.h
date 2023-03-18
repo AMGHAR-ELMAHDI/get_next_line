@@ -1,12 +1,21 @@
-
-
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: eamghar <eamghar@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/17 13:20:36 by eamghar           #+#    #+#             */
+/*   Updated: 2023/03/17 15:34:44 by eamghar          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 
-#ifndef	BUFFER_SIZE
-# define BUFFER_SIZE 42
-#endif
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 42
+# endif
 
 # include <stdio.h>
 # include <stdlib.h>
